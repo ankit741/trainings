@@ -1,0 +1,40 @@
+1. Difference between undefined and not defined in JavaScript?
+
+In JavaScript if you try to use a variable that doesn't exist and has not been declared, then JavaScript will throw an error var name is not defined and the script will stop execute thereafter. But If you use typeof undeclared_variable then it will return undefined.
+
+Before starting further discussion let understand the difference between declaration and definition.
+
+var x is a declaration because you are not defining what value it holds yet, but you are declaring its existence and the need of memory allocation.
+
+var x; // declaring x
+console.log(x); //output: undefined
+var x = 1 is both declaration and definition (also we can say we are doing initialisation), Here declaration and assignment of value happen inline for variable x, In JavaScript every variable declaration and function declaration brings to the top of its current scope in which it's declared then assignment happen in order this term is called hoisting.
+
+A variable that is declared but not define and when we try to access it, It will result undefined.
+
+var x; // Declaration
+if(typeof x === 'undefined') // Will return true
+A variable that neither declared nor defined when we try to reference such variable then It result not defined.
+
+console.log(y);  // Output: ReferenceError: y is not defined
+
+
+2. What is the difference between let and var?
+You can list out the differences in a tabular format
+
+var	                                                          let
+It is been available from the beginning of JavaScript	   Introduced as part of ES6
+It has function scope	                                   It has block scope
+Variables will be hoisted	                           Won’t get hoisted
+
+
+
+3. What is Temporal Dead Zone?
+The Temporal Dead Zone is a behavior in JavaScript that occurs when declaring a variable with the let and const keywords, but not with var. In ECMAScript 6, accessing a let or const variable before its declaration (within its scope) causes a ReferenceError. The time span when that happens, between the creation of a variable’s binding and its declaration, is called the temporal dead zone. Let’s see this behavior with an example,
+
+function somemethod() {
+  console.log(counter1); // undefined
+  console.log(counter2); // ReferenceError
+  var counter1 = 1;
+  let counter2 = 2;
+}
