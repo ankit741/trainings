@@ -1,0 +1,179 @@
+Object-oriented programming System(OOPs) is a programming paradigm that is based on “objects”. 
+Object oriented programming brings data and its behaviour together in a single entity called objects. It makes the programming easier to understand.The primary purpose of object-oriented programming is to increase the readability, flexibility and maintainability of programs.
+
+The core OOPs concepts:
+
+Object
+Class
+Abstraction
+Encapsulation
+Inheritance
+Polymorphism
+
+
+1. Object
+An object can be represented as an entity that has state and behaviour. For example: A car is an object that has states such as color, model, price and behaviour such as speed, start, gear change, stop etc.
+
+Let’s understand the difference between state and behaviour. The state of an object is a data item that can be represented in value such as price of car, color, consider them as variables in programming. The behaviour is like a method of the class, it is a group of actions that together can perform a task.
+
+
+2. Class
+It is a template or blueprint from which objects are created. In short, a class is the specification or template of an object.
+A class is a construct that defines objects of the same type
+
+3. Abstraction
+
+Abstraction means hiding lower-level details and exposing only the essential and relevant details to the users.
+
+Example 1: Let's consider a Car, which abstracts the internal details and exposes to the driver only those details that are relevant to the interaction of the driver with the Car.
+
+Example 2: Consider an ATM Machine; All are performing operations on the ATM machine like cash withdrawal, money transfer, retrieve mini-statement…etc. but we can't know the internal details about ATM.
+
+
+4. Encapsulation
+
+Encapsulation is a process of wrapping data and methods in a single unit is called encapsulation.
+In OOP, data and methods operating on that data are combined together to form a single unit, which is referred to as a Class. 
+
+Example
+
+A Java class is an example of encapsulation. Java bean is the fully encapsulated class because all the data members are private here.
+
+1) Make the instance variables private so that they cannot be accessed directly from outside the class. You can only set and get values of these variables through the methods of the class.
+2) Have getter and setter methods in the class to set and get the values of the fields.
+
+What is the benefit of using encapsulation in java programming?
+The main advantage of using encapsulation is to secure the data from other methods. 
+For example, when we make fields private then these fields are only used within the class, but these data are not accessible outside the class.
+
+Difference between Abstraction and Encapsulation
+
+Abstraction is implemented in Java using an interface and abstract class while Encapsulation is implemented using private, package-private, and protected access modifiers.
+Abstraction solves the problem at the design level. Whereas Encapsulation solves the problem at the implementation level.
+Encapsulation: Information hiding.
+Abstraction:   Implementation hiding.
+
+
+5. Inheritance
+Inheritance is a process of obtaining the data members and methods from one class to another class, plus can have its own is known as inheritance. It is one of the fundamental features of object-oriented programming.
+
+Inheritance - IS-A relationship between a superclass and its subclasses.
+
+Super Class: The class whose features are inherited is known as a superclass (or a base class or a parent class).
+Sub Class: The class that inherits the other class is known as a subclass(or a derived class, extended class, or child class). The subclass can add its own fields and methods in addition to the superclass fields and methods.
+
+In the Java library, you can see extensive use of inheritance. The below figure shows a partial inheritance hierarchy from java.lang library. The Number class abstracts various numerical (reference) types such as Byte, Integer, Float, Double, Short, and BigDecimal.
+
+Note: The biggest advantage of Inheritance is that the code in base class need not be rewritten in the child class.
+The variables and methods of the base class can be used in the child class as well.
+
+Types of Inheritance:
+
+Single Inheritance: refers to a child and parent class relationship where a class extends the another class.
+
+Multilevel inheritance: refers to a child and parent class relationship where a class extends the child class. For example class A extends class B and class B extends class C.
+
+Hierarchical inheritance: refers to a child and parent class relationship where more than one classes extends the same class. For example, class B extends class A and class C extends class A.
+
+Multiple Inheritance: refers to the concept of one class extending more than one classes, which means a child class has two parent classes. Java doesn’t support multiple inheritance.
+
+6. Polymorphism
+The process of representing one form in multiple forms is known as Polymorphism.
+
+Different definitions of Polymorphism are:
+
+Polymorphism allows us to perform a single action in different ways.
+Polymorphism allows you to define one interface and have multiple implementations
+We can create functions or reference variables that behave differently in a different programmatic context.
+Polymorphism means many forms.
+
+Types of Polymorphism
+1) Static Polymorphism
+2) Dynamic Polymorphism
+
+
+Static Polymorphism:
+Polymorphism that is resolved during compiler time is known as static polymorphism. Method overloading can be considered as static polymorphism example.
+
+Method Overloading: This allows us to have more than one methods with same name in a class that differs in signature.
+
+Dynamic Polymorphism
+It is also known as Dynamic Method Dispatch. Dynamic polymorphism is a process in which a call to an overridden method is resolved at runtime rather, thats why it is called runtime polymorphism.
+
+
+
+Apart from these core OOPS concepts, there are some other terms that are used in Object-Oriented design:
+Association
+Composition
+Aggregation
+Delegation
+Coupling
+Cohesion
+
+
+Association
+Intent
+It represents a relationship between two or more objects where all objects have their own lifecycle and there is no owner. The name of an association specifies the nature of the relationship between objects.
+Association is a relation between two separate classes that establish through their Objects. Association can be one-to-one, one-to-many, many-to-one, many-to-many.
+In Object-Oriented programming, an Object communicates to other Objects to use functionality and services provided by that object.
+
+There are two forms of association
+Composition
+Aggregation
+
+
+Composition
+
+Intent
+Composition is an association that represents a part of a whole relationship where a part cannot exist without a whole. If a whole is deleted then all parts are deleted. It has a stronger relationship. Key Points
+It represents a part-of-relationship.
+In composition, both entities are dependent on each other.
+When there is a composition between two entities, the composed object cannot exist without the other entity.
+Favor Composition over Inheritance.
+
+Example1: University consists of several departments whenever university object destroys automatically all the department objects will be destroyed is without existing university object there is no chance of existing dependent object hence these are strongly associated and this relationship is called composition.
+
+Example2:
+Let's take the example of Placing an Order. If order HAS-A line-items, then an order is a whole, and line items are parts. If an order is deleted then all corresponding line items for that order should be deleted.
+
+Aggregation
+
+Intent
+Aggregation is an association that represents a part of a whole relationship where a part can exist without a whole. It has a weaker relationship.
+It is a specialized form of Association where all object has its own lifecycle but there is ownership. This represents a “whole-part or a-part-of” relationship.
+
+Let’s take an example of the relationship between the Department and the Teacher. A Teacher may belong to multiple departments. Hence Teacher is a part of multiple departments. But if we delete a Department, the Teacher Object will not destroy.
+
+Delegation
+
+Intent
+Hand over the responsibility for a particular task to another class or method.
+It is a technique where an object expresses certain behavior to the outside but in reality delegates responsibility for implementing that behavior to an associated object.
+
+Use the Delegation in order to achieve the following
+Reduce the coupling of methods to their class
+Components that behave identically, but realize that this situation can change in the future.
+If you need to use functionality in another class but you do not want to change that functionality then use delegation instead of inheritance.
+
+
+Coupling
+Intent
+Coupling refers to the degree to which one class knows about another class. If one class uses another class, that is coupling. Low dependencies between “artifacts” (classes, modules, components). There shouldn’t be too much dependency between the modules, even if there is a dependency it should be via the interfaces and should be minimal.
+Key Points
+While creating a complex application in java, the logic of one class will call the logic of another class to provide the same service to the clients.
+If one class calling another class logic then it is called collaboration.
+When one class is collaborating with another class then there exists tight-coupling between the two classes.
+If one class wants to call the logic of a second class then the first-class need an object of second class it means the first class creates an object of second class.
+
+
+Cohesion
+Intent
+The term cohesion is used to indicate the degree to which a class has a single, well-focused responsibility. Cohesion is a measure of how the methods of a class or a module are meaningfully and strongly related and how focused they are in providing a well-defined purpose to the system.
+
+Explanation
+In object-oriented design, cohesion refers all to how a single class is designed. Cohesion is the Object-Oriented principle most closely associated with making sure that a class is designed with a single, well-focused purpose.
+The more focused a class is, the more cohesiveness of that class is more.
+The advantage of high cohesion is that such classes are much easier to maintain (and less frequently changed) than classes with low cohesion. Another benefit of high cohesion is that classes with a well-focused purpose tend to be more reusable than other classes.
+
+
+

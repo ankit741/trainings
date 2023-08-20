@@ -1,0 +1,89 @@
+Below are some points covering the History of Java –
+
+Originally, the language was named Oak, but it cannot be carried because it was a pre-existing trademark.
+The project for developing this language was started by a team led by James Gosling in 1991. The team was named as Green-Team.
+From the starting, they decided that the development should be platform-independent and was started by extending the C++ which was currently going on at that time.
+By 1992, a PDA device named “Star 7” was developed that was running on this Java Technology.
+In 1994, the Java compiler was first implemented in Java.
+
+Java Became Oracle Product:
+
+In 2009, Sun was taken by Oracle due to which Java became an oracle product.
+Moreover, in 2009 a Java-based game called Minecraft was released which became very popular among users.
+In the past years, Java has been developing and its new versions are being released and are one of the most commonly used programming languages.
+
+
+what is java?
+
+Java is an object-oriented,high-level,multi-purpose, strongly typed programming language developed by James Gosling and colleagues at Sun Microsystems in the early 1990s. Unlike conventional languages which are generally designed either to be compiled to native (machine) code, or to be interpreted from source code at runtime, Java is intended to be compiled to a bytecode, which is then run (generally using JIT compilation) by a Java Virtual Machine.
+
+The language itself borrows much syntax from C and C++ but has a simpler object model and fewer low-level facilities.
+
+
+Features
+Thanks to its excellent features, Java has become a popular and useful programming language. Sun characterized it as being:
+
+1.Compiled and Interpreted
+2.Platform Independent and Portable
+3.Object-Oriented
+4.Robust and Secure
+5.Distributed
+6.Familiar, Simple and Small
+7.Multi-threaded and Interactive
+8.High Performance
+9.Dynamic and Extensible
+
+
+1.Compiled and Interpreted
+
+Java combines the power of compiled languages with the flexibility of interpreted languages.
+
+The compiler (javac) compiles the source code into bytecode, then the Virtual Machine (JVM) executes this bytecode by transforming it into machine-readable code.
+
+2.Platform Independent and Portable
+
+The two-step compilation process is what lies behind Java's most significant feature: platform independence, which allows for portability.
+
+Being platform-independent means a program compiled on one machine can be executed on any other machine, regardless of the OS, as long as there is a JVM installed.
+
+The portability feature refers to the ability to run a program on different machines. In fact, the same code will run identically on different platforms, regardless of hardware compatibility or operating systems, with no changes such as recompilation or tweaks to the source code.
+
+3.Object-Oriented
+
+Java strongly supports Object-Oriented Programming concepts such as encapsulation, abstraction, and inheritance.
+
+All the instructions and data in a Java program have to be added inside a class or object.
+
+4.Robust and Secure
+
+Java includes several useful features that help us write robust and secure applications.
+
+One of the most important ones is the memory management system, along with automatic garbage collection. Compared to languages like C/C++, Java avoids the concept of explicit pointers, and doesn't require programmers to manually manage the allocated memory.
+
+Instead, the GC will take care of deleting unused objects to free up memory.
+
+In addition, Java is a strongly-typed language, which is a feature that can help lower the number of bugs in an application, and provides error handling mechanisms.
+
+5.Distributed
+
+This feature is helpful when we develop large projects. We can split a program into many parts and store these parts on different computers. As a result, we can easily create distributed and scalable applications that run on multiple nodes.
+
+We can achieve this using the concept of RMI (Remote Method Invocation) and EJB (Enterprise JavaBeans).
+
+6.Simple and Familiar
+
+First, Java is simple thanks to its coding style, which is very clean and easy to understand. Also, it doesn’t use complex and difficult features of other languages, such as the concept of explicit pointers.
+
+Finally, Java is familiar since it's based on existing languages like C++ and incorporates many features from these languages.
+
+7.Multi-Threaded and Interactive
+
+Also known as Thread-based Multitasking, multithreading is a feature that allows executing multiple threads simultaneously.
+
+In short, we can write Java programs that deal with many tasks at once by defining multiple threads. The advantage of multithreading is that it doesn't occupy memory for each thread – all threads share a common memory area.
+
+8.High Performance
+Bytecodes that the compiler generates are highly optimized, so the Virtual Machine can execute them much faster. This is why Java is faster than other traditional interpreted programming languages.
+
+9.Dynamic and Extensible
+This feature gives the facility of dynamically linking new class libraries, methods, and objects. Java is highly dynamic as it can adapt to its evolving environment.
