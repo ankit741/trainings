@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>External async js</title>
+  </head>
+  <body>
+    <p id="msg">Hello World !</p>
+    <!-- tag is now displayed before script have executed.
+    by using async the document is fully loaded before the script run -->
+    <script src="./main.js" async></script>
+  </body>
+</html>

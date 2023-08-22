@@ -1,0 +1,71 @@
+Syntax parser:
+==============
+Program that reads your program to dertermine if its valid. it is part of interpreter.
+goes through the code line by line.
+
+Whitespace:
+=============
+Spaces and tab ex-  let name = 'ankt' , let name =           'ankt'
+let name =           
+'ankt';
+
+JS doesn't care about whitespaces. the interpreter automatically reformats the whitespaces.
+
+Semicolons: 
+===========
+JS program made of many statements. ; are not mandatory in JS
+
+Comments: 
+==========
+remind you what u were trying to do. also, to other people what your code is meant to be doing.
+          the more complex is your code the more comment you should make. they don't get executed.
+
+          // single line comment.
+
+           /*
+             multi line comment.
+          */
+
+
+JavaScript is Case Sensitive.
+=============================
+
+All JavaScript identifiers are case sensitive. 
+
+The variables lastName and lastname, are two different variables:
+
+JavaScript Character Set
+==========================
+JavaScript uses the Unicode character set.
+Unicode covers (almost) all the characters, punctuations, and symbols in the world.
+
+
+
+
+Keywords & Reserved words
+=============================
+JavaScript defines a list of reserved keywords that have specific uses. Therefore, you cannot use the reserved keywords as identifiers or property names by rules.
+
+The following table shows the JavaScript reserved words defined in ECMA-262:
+
+break	 case	catch
+continue	debugger	default
+else	export	extends
+function	if	        import
+new	return	super
+throw	try	null
+void	while	with
+class	delete	finally
+in	switch	typeof
+yield	const	do
+for	instanceof	         this
+var		
+In addition to the reserved keywords, ECMA-252 also define a list of future reserved words that cannot be used as identifiers or property names:
+
+enum	implements	let
+protected	private	public
+await	interface	package
+implements	public
+
+
+
