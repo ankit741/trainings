@@ -1,0 +1,49 @@
+Signed Binary Numbers:
+Signed Binary Numbers use the MSB as a sign bit to display a range of either positive numbers or negative numbers.
+
+In mathematics, positive numbers (including zero) are represented as unsigned numbers. That is we do not put the +ve sign in front of them to show that they are positive numbers.
+But when dealing with negative numbers we do use a -ve sign in front of the number to show that the number is negative in value and different from a positive unsigned value, and the same is true with signed binary numbers.
+
+But when dealing with negative numbers we do use a -ve sign in front of the number to show that the number is negative in value and different from a positive unsigned value, and the same is true with signed binary numbers.
+
+
+consider how one is forced to add values. Our process depends on our context. If both numbers are positive, one can simply use normal binary addition:
+
+  5     0 0000101
+ +3     0 0000011
+----   -----------
+  8     0 0001000 (which represents 8) 
+
+But if there is a mixture of signs, we need to recognize this requires subtraction, as otherwise we get an incorrect result:
+
+    5      00000101
+ +(-3)     10000011
+-------   ----------
+    2      10001000 (which represents -8) 
+
+In the interests of efficiency, it would be nice if the process we use internally to add two numbers didn't depend on their values! Enter the two's complement...
+
+
+The Two's Complement Method:
+
+In the (8-bit) two's complement representation of a integer value between -127 and 127, positive integers are represented in the normal binary manner (with a natural leading zero as the largest number is 127). Representations for negative numbers are obtained from the representations for positive numbers in the following way:
+
+                                                      Example 1: (value = -41)	                  Example 2: (value = -44)
+1. Starting from the right, find the first '1'	              00101001	                              00101100
+2. Invert all of the bits to the left of that one	      11010111	                              11010100
+
+
+
+Amazingly, representing negative numbers in this way allows us to compute the sum of two numbers, regardless of their signs, in the SAME way -- via normal binary addition!
+
+  5     00000101
+ +3     00000011
+----   ----------
+  8     00001000 (which represents 8) 
+
+
+    5      00000101
+ +(-3)     11111101
+-------   ----------
+    2      00000010 (which represents 2) 
+
