@@ -1,0 +1,66 @@
+immutable:
+
+All primitives are immutable; that is, they cannot be altered. It is important not to confuse a primitive itself with a variable assigned a primitive value. The variable may be reassigned to a new value, but the existing value can not be changed in the ways that objects, arrays, and functions can be altered.
+
+Primitives have no methods but still behave as if they do. When properties are accessed on primitives, JavaScript auto-boxes the value into a wrapper object and accesses the property on that object instead. For example, "foo".includes("f") implicitly creates a String wrapper object and calls String.prototype.includes() on that object. This auto-boxing behavior is not observable in JavaScript code but is a good mental model of various behaviors — for example, why "mutating" primitives does not work (because str.foo = 1 is not assigning to the property foo of str itself, but to an ephemeral wrapper object).
+
+
+What will be the output?
+
+let a = 3;
+let b = new Number(3);
+let c = 3;
+
+console.log(a == b);
+console.log(a === b);
+console.log(b === c);
+
+/*
+
+new Number() is a built-in function constructor. Although it looks like a number, it's not really a number: it has a bunch of extra features and is an object.
+
+When we use the == operator (Equality operator), it only checks whether it has the same value. They both have the value of 3, so it returns true.
+
+However, when we use the === operator (Strict equality operator), both value and type should be the same. It's not: new Number() is not a number, it's an object. Both return false.
+*/
+
+What is the difference between null and undefined?
+
+In Javascript, null is an assignment value, and can be assigned to a variable representing that
+it has no value. Undefined, on the other hand, represents that a variable has been declared but
+there is no value associated with it.
+Null and undefined are both primitives and falsy values. However null is also an object. Interestingly, this was actually an error in the original JavaScript implementation.
+
+
+What is isNaN?
+The isNaN() function is used to determine whether a value is an illegal number (Not-a-Number) or not. i.e, This function returns true if the value equates to NaN. Otherwise it returns false.
+
+What is the purpose of isFinite function?
+The isFinite() function is used to determine whether a number is a finite, legal number. It returns false if the value is +infinity, -infinity, or NaN (Not-a-Number), otherwise it returns true.
+
+isFinite(Infinity); // false
+isFinite(NaN); // false
+isFinite(-Infinity); // false
+
+isFinite(100); // true
+
+isNaN("Hello"); //true
+isNaN("100"); //false
+
+
+
+Is 'false' is false?
+
+Answer: No. Because, it's a string with length greater than 0. Only empty string is false.
+
+What is 2+true ?
+Answer: 3. The plus operator between a number and a boolean or two boolean will convert boolean to number. Hence, true converts to 1 and you get result of 2+1
+
+ What is '6'+9
+Answer: 69. If one of the operands of the plus (+) operator is string it will convert other number or boolean to string and perform a concatenation. For the same reason, "2"+true will return "2true"
+
+What is the value of 4+3+2+"1"
+Answer: 91 . The addition starts from the left, 4+3 results 7 and 7+2 is 9. So far, the plus operator is performing addition as both the operands are number. After that 9 + "1" where one of the operands is string and plus operator will perform concatenation.
+
+ What is the value of "1"+2+4
+Answer: "124". For this one "1" + 2 will produce "12" and "12"+4 will generates "124".

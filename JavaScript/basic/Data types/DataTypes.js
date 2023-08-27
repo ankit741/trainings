@@ -71,6 +71,20 @@ let a =0.1+0.2;  // is not equal to 0.3
 console.log(a);
 
 /*
+ why 0.1 + 0.2 does not equal to 0.3?
+
+Binary floating point math is like this. In most programming languages, it is based on the IEEE 754 standard. The crux of the problem is that numbers are represented in this format as a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.
+
+It’s actually rather interesting. When you have a base-10 system (like ours), it can only express fractions that use a prime factor of the base. The prime factors of 10 are 2 and 5. So 1/2, 1/4, 1/5, 1/8, and 1/10 can all be expressed cleanly because the denominators all use prime factors of 10. In contrast, 1/3, 1/6, 1/7 and 1/9 are all repeating decimals because their denominators use a prime factor of 3 or 7.
+
+In binary (or base-2), the only prime factor is 2, so you can only cleanly express fractions whose denominator has only 2 as a prime factor. In binary, 1/2, 1/4, 1/8 would all be expressed cleanly as decimals, while 1/5 or 1/10 would be repeating decimals. So 0.1 and 0.2 (1/10 and 1/5), while clean decimals in a base-10 system, are repeating decimals in the base-2 system the computer uses. When you perform math on these repeating decimals, you end up with leftovers which carry over when you convert the computer’s base-2 (binary) number into a more human-readable base-10 representation.
+
+Do not do if (x == y) { ... }
+
+Instead do if (abs(x - y) < myToleranceValue) { ... }.
+*/
+
+/*
 javaScript numbers are always store as double floating point number.(double precision 64 -bit)
 32 bits (single precision) and 64 bits (double precision).
 number is broken into two categories :
@@ -81,6 +95,10 @@ ex-
 
 5.0 is most significant number(may represent a number or fractional part) also known as mentissa.
 10^-3 to know where decimal point belongs (-3 here is exponent)
+
+
+Scientific notation is a way of writing very large or very small numbers. 
+==================
 
 0.0000000000000976 => 9.76*10^-14
 976,000,000,000,000 => 9.76*10^14

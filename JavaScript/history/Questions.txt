@@ -1,0 +1,16 @@
+What is a first class function?
+In Javascript, functions are first class objects. First-class functions means when functions in that language are treated like any other variable.
+
+For example, in such a language, a function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable.
+
+
+What is a pure function
+A Pure function is a function where the return value is only determined by its arguments without any side effects. i.e, If you call a function with the same arguments 'n' number of times and 'n' number of places in the application then it will always return the same value.
+
+
+What is a first order function?
+First-order function is a function that doesn’t accept another function as an argument and doesn’t return a function as its return value.
+
+
+What is a higher order function?
+Higher-order function is a function that accepts another function as an argument or returns a function as a return value or both.

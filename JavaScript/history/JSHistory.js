@@ -5,7 +5,7 @@ What is javaScript?
 JavaScript is the world's most popular programming language.JavaScript is the programming language of the Web.
 JavaScript is a client-side scripting language used together with HTML and CSS to build dynamic and interactive webpages.
 
-JavaScript (JS) is a lightweight interpreted (or just-in-time compiled) programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.j,  JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles.
+JavaScript (JS) is a lightweight interpreted (or just-in-time compiled) programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.j,  JavaScript is a prototype-based, multi-paradigm, synchronous single-thread, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles.
 
 
 JavaScript (also known as ECMAScript) started its life as a simple scripting language for browsers. At the time it was invented, it was expected to be used for short snippets of code embedded in a web page — writing more than a few dozen lines of code would have been somewhat unusual. Due to this, early web browsers executed such code pretty slowly. Over time, though, JS became more and more popular, and web developers started using it to create interactive experiences.
