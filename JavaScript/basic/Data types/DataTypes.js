@@ -24,6 +24,7 @@ Reference :
 1. An object
 2. An array
 3. A date
+4.function
 
 typeof() helps you identify  the type of value that the variable stores.
 
@@ -37,8 +38,14 @@ age = false;   // age is now a boolean
 console.log(typeof age);
 age = 'hello';   // age is now a string
 console.log(typeof age);
+
 age = null; // age is now null 
-console.log(typeof age); // it's primitive
+/*
+The typeof null returns object is a known bug in JavaScript. A proposal to fix this was proposed but rejected. 
+The reason was the that fix would break a lot of existing sites.
+*/
+console.log(typeof age); // it's primitive though
+
 age = undefined;
 console.log(typeof age);// age is now undefined
 age = Symbol();
@@ -232,4 +239,100 @@ console.log(person.address.city)
 console.log(person.print())
 person.printAge();
 
-// there are other methods as well , will see later 
+
+
+
+//Using a constructor function :
+
+/*
+Alternatively, you can create an object with these two steps:
+Define the object type by writing a constructor function. 
+There is a strong convention, with good reason, to use a capital initial letter.
+Create an instance of the object with new.
+*/
+
+//To define an object type, create a function for the object type that specifies its name, properties, and methods.
+
+function Car(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+}
+
+/*
+When a function is executed with new, it does the following steps:
+
+A new empty object is created and assigned to this.
+The function body executes. Usually it modifies this, adds new properties to it.
+The value of this is returned.
+
+function User(name) {
+  // this = {};  (implicitly)
+
+  // add properties to this
+  this.name = name;
+  this.isAdmin = false;
+
+  // return this;  (implicitly)
+}
+*/
+const myCar = new Car("Eagle", "Talon TSi", 1993);
+
+console.log(myCar);
+console.log(myCar.year);
+console.log(typeof myCar)
+
+const yourCar = Car("Eagle1", "Talon TSi1", 1993);
+
+console.log(yourCar);
+// console.log(yourCar.year);
+// console.log(typeof yourCar)
+
+function Bike(name,price){
+    if (!new.target) { // if without new
+        return new Bike(name,price); //  will add new for you
+      }
+    this.name = name;
+    this.price=price;
+    this.getPrice=function(){
+        return this.price;
+    }
+}
+const bike=Bike("apache",150000);
+console.log(bike.name);
+console.log(bike.getPrice());
+
+//With new we all know that the new object is being created.
+
+//function expression.
+
+let Student= function(name,age){
+    this.name=name;
+    this.age=age;
+    }
+    
+    let ankit=new Student('ANKIT',20);
+    console.log(ankit.name);
+    console.log(ankit.age);
+
+
+//Object.create() method
+
+/*
+Objects can also be created using the Object.create() method. 
+This method can be very useful, because it allows you to choose the prototype object for the object you want to create, without having to define a constructor function.
+*/
+
+// Animal properties and method encapsulation
+const Animal = {
+    type: "Invertebrates",
+    displayType() {
+        // Method which will display type of Animal
+        console.log(this.type);
+    },
+};
+
+// Create new animal type called animal1
+const animal1 = Object.create(Animal);
+animal1.displayType(); // Logs: Invertebrates
+
