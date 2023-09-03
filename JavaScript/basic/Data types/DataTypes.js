@@ -239,7 +239,53 @@ console.log(person.address.city)
 console.log(person.print())
 person.printAge();
 
+// Removes the a property
+delete person.name;
 
+/*
+Every Object has a hidden link to another object called a prototype link.
+Objects by default are linked to the object Object.prototype.
+
+If the JavaScript engine cannot find the property in the object’s prototype,
+it’ll search in the prototype’s prototype until either it finds the property or reaches the end of the prototype chain.
+For example, you can call the toString() method on person
+
+person.email; // undefined - property age does not exist
+
+JavaScript tried to find the property age on person, and it could not. So then it tried to find it on Object.prototype 
+and it could not find it either. So it returned "undefined".
+
+Object.prototype.email = 'abc@abc.com'; // Every object is linked to Object.prototype by default
+person.email; // abc@abc.com
+
+typeof(Object) is function
+
+console.log(person instanceof Object);
+person.__proto__; // => {}
+person.__proto__.isPrototypeOf(person); // => true
+person.__proto__ returns the prototype object of myObject.
+
+function example :
+var addNum = function(num1, num2) {
+        return num1 + num2;
+}
+
+typeof addNum; //function - which is an object in JavaScript
+Since functions are objects, they too have a prototype link. But where object literals are by default linked to Object.prototype,
+function objects are linked to Function.prototype. 
+
+Just like Object.prototype is used to augment objects with properties, so Function.prototype is used to augment functions with properties.
+
+var result = addNum(3,4); // 7
+
+//Add a function to Function.prototype
+Function.prototype.substract = function(num1, num2) {
+        return num1 - num2;
+}
+
+//We can now use subtract on any function object
+result = addNum.subtract(5,2); //3
+*/
 
 
 //Using a constructor function :
@@ -304,17 +350,29 @@ console.log(bike.getPrice());
 
 //With new we all know that the new object is being created.
 
-//function expression.
+//Creating Objects From Functions
+
+/*
+Is a function and an object (remember, everything is an object in JavaScript).
+It has a prototype property, and its prototype link is to set to Function.prototype by default.
+*/
+
 
 let Student= function(name,age){
     this.name=name;
     this.age=age;
     }
     
-    let ankit=new Student('ANKIT',20);
-    console.log(ankit.name);
-    console.log(ankit.age);
+let ankit=new Student('ANKIT',20); //Using new to invoke the function
+console.log(ankit.name);
+console.log(ankit.age);
 
+/*
+ new creates an object from the function object Student. 
+ Its power comes in because it will use Student's prototype property as the prototype link for the new object.
+ And since Student can set the value of its prototype property, 
+ objects constructed in this way do not have to be linked to Object.prototype
+*/
 
 //Object.create() method
 
