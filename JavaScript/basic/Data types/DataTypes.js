@@ -321,6 +321,17 @@ function User(name) {
 
   // return this;  (implicitly)
 }
+
+let user = new User();
+
+console.log(User.prototype.constructor === User); // true
+console.log(user.constructor === User); // true
+console.log(Object.getPrototypeOf(user) === User.prototype); // true
+
+
+When user is created by calling new User(), one of the things that happens 
+is that user object gets an internal [[Prototype]] link to the object that User.prototype is pointing at.
+
 */
 const myCar = new Car("Eagle", "Talon TSi", 1993);
 
