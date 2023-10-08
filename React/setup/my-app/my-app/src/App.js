@@ -1,6 +1,6 @@
 import './App.css';
-import HelloWorld from './HelloWorld.js'
-import Profile from './User.js'
+import HelloWorld from './components/HelloWorld'
+import Profile from './components/User'
 
 function App() {
   return (
