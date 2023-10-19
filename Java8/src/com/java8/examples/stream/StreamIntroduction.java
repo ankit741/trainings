@@ -107,6 +107,12 @@ public class StreamIntroduction {
         OptionalInt min = Arrays.stream(numbers).min();
         long count = Arrays.stream(numbers).count();
         OptionalDouble average  = Arrays.stream(numbers).average();
-        
+
+        /**
+         * The distinct() operation returns a stream consisting of the distinct elements (no duplicates)
+         * by comparing objects via their equals() method.
+         */
+        int[] arr = {23, 58, 12, 23, 17, 29, 99, 98, 29, 12};
+        Arrays.stream(arr).distinct().forEach(i -> System.out.print(i + " "));
     }
 }
