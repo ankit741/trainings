@@ -11,6 +11,16 @@ import java.util.List;
  * <p>
  * A lambda expression cannot have a throws clause. It is inferred from the context of its use and
  * its body. Lambda expressions cannot be generic i.e. they cannot declare type parameters.
+ *
+ * Anonymous classes vs lambdas
+ *
+ * Let's compare anonymous classes with lambdas to understand the differences between them.
+ *
+ * In anonymous classes, this refers to the anonymous class itself whereas in lambda expressions, this refers to the class enclosing the lambda expression.
+ *
+ * You can shadow variables in the enclosing class inside the anonymous class. This gives a compile time error when done inside a lambda expression.
+ *
+ * The type of the lambda expression is determined from the context, whereas the type of the anonymous class is specified explicitly as you create the instance of anonymous class.
  */
 public class Test1 {
 

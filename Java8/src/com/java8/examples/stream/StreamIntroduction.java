@@ -3,6 +3,7 @@ package com.java8.examples.stream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalDouble;
@@ -76,6 +77,21 @@ public class StreamIntroduction {
      An example of a Terminal operation is count() which counts the total number of elements in a stream.
      */
 
+    mapExample();
+
+    filterExample();
+
+    skipExample();
+
+    limitExample();
+
+    distinctExample();
+
+    reduceExample();
+
+  }
+
+  private static void mapExample() {
     /**
      * map() Operation
      * The map() operation takes a function as an input and returns a stream consisting of the results of applying
@@ -85,6 +101,9 @@ public class StreamIntroduction {
     List<Integer> integerList = Arrays.stream(s.split("\\s+")).map(Integer::parseInt)
         .collect(Collectors.toList());
     integerList.forEach(System.out::println);
+  }
+
+  public static void filterExample() {
 
     /**
      * filter() Operation
@@ -98,12 +117,48 @@ public class StreamIntroduction {
         .collect(Collectors.toList());
     System.out.println(longWords);
 
-    /**
-     * collect() Operation
-     * The collect() operation seen in an earlier example is another commonly used reduction operation to get
-     * the elements from a stream after completing all the processing:
-     */
+    List<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
+    List<Integer> odds = numbers.stream().filter(number -> number % 2 == 1)
+        .collect(Collectors.toList());
 
+    // outputs "[1, 3, 5]"
+    System.out.println(odds);
+  }
+
+  public static void skipExample() {
+    List<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
+    List<Integer> remainder = numbers.stream().skip(3).collect(Collectors.toList());
+
+    // outputs "[4, 5]"
+    System.out.println(remainder);
+  }
+
+  public static void limitExample() {
+    List<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
+    List<Integer> taken = numbers.stream().limit(3).collect(Collectors.toList());
+
+    // outputs "[1, 2, 3]"
+    System.out.println(taken);
+  }
+
+  public static void distinctExample() {
+
+    /**
+     * The distinct() operation returns a stream consisting of the distinct elements (no duplicates)
+     * by comparing objects via their equals() method.
+     */
+    int[] arr = {23, 58, 12, 23, 17, 29, 99, 98, 29, 12};
+    Arrays.stream(arr).distinct().forEach(i -> System.out.print(i + " "));
+
+    List<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 1, 2, 3, 5));
+    List<Integer> distinct = numbers.stream().distinct().collect(Collectors.toList());
+
+    // outputs "[1, 2, 3, 5]"
+    System.out.println(distinct);
+  }
+
+
+  public static void reduceExample() {
     /**
      * Specialized Reduction Functions
      * The Stream interface provides reduction operations that
@@ -116,11 +171,26 @@ public class StreamIntroduction {
     long count = Arrays.stream(numbers).count();
     OptionalDouble average = Arrays.stream(numbers).average();
 
-    /**
-     * The distinct() operation returns a stream consisting of the distinct elements (no duplicates)
-     * by comparing objects via their equals() method.
-     */
-    int[] arr = {23, 58, 12, 23, 17, 29, 99, 98, 29, 12};
-    Arrays.stream(arr).distinct().forEach(i -> System.out.print(i + " "));
+    List<Integer> number = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
+    int sum1 = number.stream().reduce(50, (a, b) -> a + b);
+
+    // we can emulate collect(Collectors.toList()) using the reduce operation!
+    // this overload of the method reduce() accepts three parameters: initial value, accumulator and combiner
+    // the accumulator function accumulates an item from the stream into the current accumulation
+    // and the combiner function is used to combine two accumulations in case they run in parallel
+    // so it's safe to say that the combiner function is a fail-safe mechanism for concurrency cases
+    List<Integer> asList = number.stream().reduce(new ArrayList<Integer>(), (list, e) -> {
+      list.add(e);
+      return list;
+    }, (list1, list2) -> {
+      list1.addAll(list2);
+      return list1;
+    });
+
+    // outputs "65"
+    System.out.println(sum1);
+
+    // outputs "[1, 2, 3, 4, 5]"
+    System.out.println(asList);
   }
 }
