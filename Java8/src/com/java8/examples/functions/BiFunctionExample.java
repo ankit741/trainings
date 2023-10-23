@@ -1,5 +1,8 @@
 package com.java8.examples.functions;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -21,6 +24,14 @@ public class BiFunctionExample {
 
   public static void main(String[] args) {
 
+    BiFunction<Integer, Integer, Integer> mul = (x, y) -> x * y;
+    Function<Integer, Integer> times2 = x -> x * 2;
+    Function<Integer, Integer> minus1 = x -> x - 1;
+
+     // r = ((3 * 3) * 2) - 1
+    Integer r = mul.andThen(times2).andThen(minus1).apply(3, 3);
+    System.out.println(r);
+
     // takes two Integers and return an Integer
     BiFunction<Integer, Integer, Integer> func = (x1, x2) -> x1 + x2;
     Integer result = func.apply(2, 3);
@@ -40,7 +51,42 @@ public class BiFunctionExample {
     String res = f1.andThen(f2).apply(2, 4);
     System.out.println(res);
 
+    hashMapBiFunctionExample1();
 
+    hashMapBiFunctionExample2();
+
+  }
+
+  private static void hashMapBiFunctionExample1() {
+    Map<Integer, String> hashMap = new HashMap<Integer, String>();
+    hashMap.put(1, "Ankit");
+    hashMap.put(2, "Ajay");
+    hashMap.put(3, "Amit");
+    hashMap.put(4, null);
+
+    hashMap.compute(4,(key, oldValue)->null==oldValue?"new value":oldValue.concat("new value"));
+    System.out.println("HashMap: " + hashMap);
+
+    // using replaceAll(key, value, BiFunction)
+    BiFunction<Integer, String, String> f1 = (key, value) -> value.replace("new value", "hello"); // null will throw NPE
+    hashMap.replaceAll(f1);
+    System.out.println("HashMap using replaceAll() -> " + hashMap);
+  }
+
+  private static void hashMapBiFunctionExample2() {
+    Map<Integer, String> m = new HashMap<>();
+    m.put(1, "Ankit");
+    m.put(2, "Ajay");
+    m.put(3, "Amit");
+    m.put(4, "Ankit");
+    m.put(5, "Ajay");
+    m.put(6, "Amit");
+    m.put(7, "Ankit");
+
+    BiFunction<Integer, String, String> f =
+        (key, value) -> "[Key="+key+", "+value+"]";
+
+    m.forEach((k,v)-> System.out.println(f.apply(k, v)));
   }
 
 }
