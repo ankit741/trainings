@@ -1,6 +1,5 @@
 package com.java8.examples.functions;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;

@@ -1,10 +1,12 @@
 package com.java8.examples.date;
 
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
+
 
 /**
  * For practical reasons in computer systems we store time in discrete integer, mainly because
@@ -51,65 +53,48 @@ import java.time.ZonedDateTime;
  * modified during the course of addition, all your assumptions are ruined. By the way that is the
  * reason why java.lang.Integer is immutable. Or String. Or BigDecimal.
  */
-public class Test1 {
+public class DateTimeExample {
 
   /**
-   * Instant now = Instant.now();
-   * System.out.println(now);
-   *
-   * ZonedDateTime dateTime = ZonedDateTime.ofInstant(
-   *         now,
-   *         ZoneId.of("Europe/Warsaw")
-   *     );
-   *
-   * System.out.println(dateTime);
-   * The output is as follows:
-   *
-   * 2016-08-05T07:00:44.057Z
-   * 2016-08-05T09:00:44.057+02:00[Europe/Warsaw]
-   *
-   * Notice that Instant (for convenience) displays date formatted in UTC
-   * whereas ZonedDateTime uses supplied ZoneId (+2 hours during summer, more on that later).
+   ew Date and Time API. An instance of this class is an immutable object representing just a plain date without the time of day.
+   In particular, it doesn’t carry any information about the time zone.
    */
-
-  /**
-   * By default you should store and send time either as timestamp (long value) or as ISO 8601 which
-   * is basically what Instant.toString() does as per the documentation.Prefer long value as it is
-   * more compact, unless you need more readable format in some text encoding like JSON Also long is
-   * timezone-agnostic so you are not pretending that the timezone you send/store has any meaning.
-   */
-
   public static void main(String[] args) {
 
-    long timestamp = System.currentTimeMillis();
-    System.out.println(timestamp);
-    Instant now = Instant.now();
+    LocalDate now = LocalDate.now();
     System.out.println(now);
 
-    ZonedDateTime dateTime = ZonedDateTime.ofInstant(
-        now,
-        ZoneId.of("Europe/Warsaw")
-    );
-    System.out.println(dateTime);
+    LocalDate date = LocalDate.of(2021, 1, 21);
+    System.out.println(date);
 
-    LocalDate.of(1985, Month.DECEMBER, 25);
+    //Reading LocalDate values using a TemporalField
+    int year = date.get(ChronoField.YEAR);
+    int month = date.get(ChronoField.MONTH_OF_YEAR);
+    int day = date.get(ChronoField.DAY_OF_MONTH);
+
+    LocalDate date2 = LocalDate.of(2021, Month.JANUARY, 28);
+    System.out.println(date2);
+
+    LocalTime now1 = LocalTime.now();
+    System.out.println(now1);
+
+    LocalTime midnight = LocalTime.of(23, 0);
+    System.out.println(midnight);
+
+    LocalDateTime newYear = LocalDateTime.of(LocalDate.of(2023, 12, 31), LocalTime.of(11, 59));
+    System.out.println(newYear);
+
+    LocalDate date1 = LocalDate.parse("2014-03-18");
+    LocalTime time = LocalTime.parse("13:45:20");
+    LocalDateTime dt1 = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45, 20);
+    LocalDateTime dt2 = LocalDateTime.of(date1, time);
+    LocalDateTime dt3 = date1.atTime(13, 45, 20);
+    LocalDateTime dt4 = date1.atTime(time);
+    LocalDateTime dt5 = time.atDate(date1);
+
+    // Days between dates
+    LocalDate today = LocalDate.now();
+    LocalDate threeDaysAgo = today.minusDays(3);
+    long days = ChronoUnit.DAYS.between(threeDaysAgo, today);
   }
-
-  /**
-   * I will celebrate my birthday that day no matter where I am. This means party will start at approximately:
-   *
-   * //20:00
-   * LocalTime.of(20, 0, 0)
-   * Irrespective to time zone. I can even say that my birthday party this year will be precisely at:
-   *
-   * //2016-12-25T20:00
-   * LocalDateTime party = LocalDateTime.of(
-   *         LocalDate.of(2016, Month.DECEMBER, 25),
-   *         LocalTime.of(20, 0, 0)
-   * );
-   * But as long as I don't provide you a location, you don't know what is the time zone I live in,
-   * thus what is the actual start time. It's impossible (or very foolish) to convert from LocalDateTime to Instant or ZonedDateTime
-   * (which both point to a precise moment in time) without giving a time zone.
-   */
-
 }
