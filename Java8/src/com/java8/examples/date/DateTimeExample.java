@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.chrono.JapaneseDate;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 
@@ -96,5 +97,11 @@ public class DateTimeExample {
     LocalDate today = LocalDate.now();
     LocalDate threeDaysAgo = today.minusDays(3);
     long days = ChronoUnit.DAYS.between(threeDaysAgo, today);
+
+
+    //The ISO-8601 calendar system is the de facto world civil calendar system.
+    // But four additional calendar systems are provided in Java 8
+    LocalDate jdate = LocalDate.of(2014, Month.MARCH, 18);
+    JapaneseDate japaneseDate = JapaneseDate.from(jdate);
   }
 }
