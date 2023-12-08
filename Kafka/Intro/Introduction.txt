@@ -1,0 +1,78 @@
+The data problem :
+
+You need a way to send data to a central storage quickly
+Because machines frequently fail, you also need the ability to have your data replicated, so those inevitable failures don't cause downtime and data loss
+That's where Apache Kafka comes in as an effective solution. Apache Kafka is a publish-subscribe based durable messaging system developed by Linkedin.
+
+
+What is Kafka?
+
+Apache Kafka is an open-source distributed streaming system used for stream processing, real-time data pipelines, and data integration at scale. Originally created to handle real-time data feeds at LinkedIn in 2011, Kafka quickly evolved from messaging queue to a full-fledged event streaming platform capable of handling over 1 million messages per second, or trillions of messages per day.
+
+
+Why Kafka?
+
+Kafka has numerous advantages. Today, Kafka is used by over 80% of the Fortune 100 across virtually every industry, for countless use cases big and small. It is the de facto technology developers and architects use to build the newest generation of scalable, real-time data streaming applications. While these can be achieved with a range of technologies available in the market, below are the main reasons Kafka is so popular.
+
+High Throughput
+Capable of handling high-velocity and high-volume data, Kafka can handle millions of messages per second.
+
+High Scalability
+Scale Kafka clusters up to a thousand brokers, trillions of messages per day, petabytes of data, hundreds of thousands of partitions. Elastically expand and contract storage and processing.
+
+Low Latency
+Can deliver these high volume of messages using a cluster of machines with latencies as low as 2ms
+
+Permanent Storage
+Safely, securely store streams of data in a distributed, durable, reliable, fault-tolerant cluster
+
+High Availability
+Extend clusters efficiently over availability zones or connect clusters across geographic regions, making Kafka highly available and fault tolerant with no risk of data loss.
+
+
+
+Apache Kafka® is an event streaming platform. What does that mean?
+
+Kafka combines three key capabilities so you can implement your use cases for event streaming end-to-end with a single battle-tested solution:
+
+To publish (write) and subscribe to (read) streams of events, including continuous import/export of your data from other systems.
+
+To store streams of events durably and reliably for as long as you want.
+
+To process streams of events as they occur or retrospectively.
+
+And all this functionality is provided in a distributed, highly scalable, elastic, fault-tolerant, and secure manner. Kafka can be deployed on bare-metal hardware, virtual machines, and containers, and on-premises as well as in the cloud. You can choose between self-managing your Kafka environments and using fully managed services offered by a variety of vendors.
+
+
+
+Main Concepts and Terminology:
+
+An event records the fact that "something happened" in the world or in your business. It is also called record or message in the documentation. When you read or write data to Kafka, you do this in the form of events. Conceptually, an event has a key, value, timestamp, and optional metadata headers. Here's an example event:
+
+Event key: "Alice"
+Event value: "Made a payment of $200 to Bob"
+Event timestamp: "Jun. 25, 2020 at 2:06 p.m."
+
+
+Producers are those client applications that publish (write) events to Kafka, and consumers are those that subscribe to (read and process) these events. In Kafka, producers and consumers are fully decoupled and agnostic of each other, which is a key design element to achieve the high scalability that Kafka is known for. For example, producers never need to wait for consumers.
+
+
+
+Events are organized and durably stored in topics. Very simplified, a topic is similar to a folder in a filesystem, and the events are the files in that folder. An example topic name could be "payments". Topics in Kafka are always multi-producer and multi-subscriber: a topic can have zero, one, or many producers that write events to it, as well as zero, one, or many consumers that subscribe to these events. Events in a topic can be read as often as needed—unlike traditional messaging systems, events are not deleted after consumption. Instead, you define for how long Kafka should retain your events through a per-topic configuration setting, after which old events will be discarded. Kafka's performance is effectively constant with respect to data size, so storing data for a long time is perfectly fine.
+
+
+Topics are partitioned, meaning a topic is spread over a number of "buckets" located on different Kafka brokers. This distributed placement of your data is very important for scalability because it allows client applications to both read and write the data from/to many brokers at the same time.
+
+When a new event is published to a topic, it is actually appended to one of the topic's partitions. Events with the same event key (e.g., a customer or vehicle ID) are written to the same partition, and Kafka guarantees that any consumer of a given topic-partition will always read that partition's events in exactly the same order as they were written.
+
+To make your data fault-tolerant and highly-available, every topic can be replicated, even across geo-regions or datacenters, so that there are always multiple brokers that have a copy of the data just in case things go wrong, you want to do maintenance on the brokers, and so on. A common production setting is a replication factor of 3, i.e., there will always be three copies of your data. This replication is performed at the level of topic-partitions.
+
+
+Why is Kafka fast?
+
+Zero Copy: Basically Kafka calls the OS kernel directly rather than at the application layer to move data fast.
+Batch data in chunks: Kafka is all about batching the data into chunks. This minimises cross machine latency with all the buffering/copying that accompanies this.
+Avoids Random Disk Access: Kafka is designed to access the disk in sequential manner. This enables it to get similar speeds from a physical disk compared with memory.
+Can scale Horizontally: The ability to have thousands of partitions for a single topic spread among thousands of machines means Kafka can handle huge loads.
+
+

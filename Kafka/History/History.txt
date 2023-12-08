@@ -1,0 +1,47 @@
+Apache Kafka was originally developed by LinkedIn, and was subsequently open sourced in early 2011. In November 2014, several engineers who worked on Kafka at LinkedIn created a new company named Confluent with a focus on Kafka. Jay Kreps seems named it after the author Franz Kafka because it is “a system optimised for writing”, and he liked Kafka’s work.
+
+What and Why
+In today’s world, Data is growing exponentially by various applications like social media, online shopping or any other type. Most of the time, applications that are producing information and applications that are consuming this information are well apart and inaccessible to each other. We need a seamless mechanism which can transfer this information reliably and quickly to multiple receivers .
+
+Kafka is one of the solution which provides seamless integration between information of producers and consumers without blocking the producers of the information, and without letting producers know who the final consumers are.
+
+
+Data Integration Challenges:
+
+A typical business collects data through a variety of applications, e.g., accounting, billing, CRM, websites, etc. Each of these applications have their own processes for data input and update. In order to get a unified view of their business, engineers have to develop bespoke integrations between these different applications.
+
+Each integration comes with difficulties around
+
+Protocol – how the data is transported (TCP, HTTP, REST, FTP, JDBC…)
+
+Data format – how the data is parsed (Binary, CSV, JSON, Avro…)
+
+Data schema & evolution – how the data is shaped and may change
+
+Apache Kafka to the rescue
+
+With Apache Kafka as a data integration layer, data sources will publish their data to Apache Kafka and the target systems will source their data from Apache Kafka. This decouples source data streams and target systems allowing for a simplified data integration solution.
+
+
+What are the use cases of Apache Kafka?
+The use cases of Apache Kafka are many. These include stream processing for different business applications. Apache Kafka makes up the storage mechanism for some of the prominent stream processing frameworks, e.g., Apache Flink, Samza.
+
+Messaging systems
+
+Activity Tracking
+
+Gather metrics from many different locations, for example, IoT devices
+
+Application logs analysis
+
+De-coupling of system dependencies
+
+Integration with Big Data technologies like Spark, Flink, Storm, Hadoop.
+
+Event-sourcing store
+
+You can find a list of use cases at https://kafka.apache.org/uses
+
+
+
+
