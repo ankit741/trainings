@@ -1,4 +1,4 @@
-package com.dsa.questions.easy;
+package com.dsa.questions.hard;
 
 /**
  You have one chocolate bar that consists of some chunks. Each chunk has its own sweetness given by the array sweetness.
