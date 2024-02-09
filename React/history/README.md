@@ -32,7 +32,8 @@ Uses reusable/composable UI components to develop the view.
 
 JSX stands for JavaScript XML and it is an XML-like syntax extension to ECMAScript. It just provides the syntactic sugar for React.createElement(type, props, ...children) function, giving us the expressiveness of JavaScript along with HTML-like template syntax.
 
-In the example below, the text inside <h1> tag is returned as a JavaScript function to the render function.
+In the example below, the text inside tag is returned as a JavaScript function to the render function.
+
 ```
 export default function App() {
   return (
@@ -40,7 +41,9 @@ export default function App() {
   );
 }
 ```
+
 If you don't use JSX syntax then the respective JavaScript code should be written as below,
+
 ```
 import { createElement } from 'react';
 
@@ -51,4 +54,5 @@ export default function App() {
     'Hello, this is a JSX Code!'
   );
 }
+
 ```
