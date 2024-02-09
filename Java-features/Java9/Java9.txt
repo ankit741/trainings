@@ -1,0 +1,86 @@
+Important Enhancements and Changes
+
+1. New JDK Versioning Scheme
+=============================
+JDK 9 uses a new version string format. The most notable changes are the removal of the “1.” from the beginning of the version string and the use of 3 or more separate elements to specify major, minor, and security updates. All code that parses the value of the system properties java.version, java.specification.version, or java.vm.specification.version should be examined to ensure that it works with the new scheme. Maintainers of code that parses these properties should also be aware of the new Runtime.version() API.
+
+The following table shows the existing and proposed values for different release types:
+
+System Property                   Existing      Proposed
+-------------------------------   ------------  --------
+Early Access 
+  java.version                    1.9.0-ea      9-ea
+  java.runtime.version            1.9.0-ea-b73  9-ea+73
+  java.vm.version                 1.9.0-ea-b73  9-ea+73
+  java.specification.version      1.9           9
+  java.vm.specification.version   1.9           9
+
+Major (GA)
+  java.version                    1.9.0         9
+  java.runtime.version            1.9.0-b100    9+100
+  java.vm.version                 1.9.0-b100    9+100
+  java.specification.version      1.9           9
+  java.vm.specification.version   1.9           9
+
+Minor #1 (GA)
+  java.version                    1.9.0_20      9.1.2
+  java.runtime.version            1.9.0_20-b62  9.1.2+62
+  java.vm.version                 1.9.0_20-b62  9.1.2+62
+  java.specification.version      1.9           9
+  java.vm.specification.version   1.9           9
+
+Security #1 (GA)
+  java.version                    1.9.0_5       9.0.1
+  java.runtime.version            1.9.0_5-b20   9.0.1+20
+  java.vm.version                 1.9.0_5-b20   9.0.1+20
+  java.specification.version      1.9           9
+  java.vm.specification.version   1.9           9
+
+
+http://openjdk.java.net/jeps/223
+
+
+
+2. Module System
+==================
+Modularity—the result of Project Jigsaw—helps developers at all levels be more productive as they build, maintain, and evolve software systems, especially large systems.
+
+Defining the Java 9 module
+---------------------------
+A module is a collection of code, data, and resources. It is a set of related packages and types (classes, abstract classes, interfaces, and more) with code, data files, and some static resources.
+
+The Java SE platform has been around since 1995. There are now approximately 10 million developers using it to build everything from small apps for resource-constrained devices—like those in the Internet of Things (IoT) and other embedded devices—to large-scale business-critical and mission-critical systems. There are massive amounts of legacy code out there, but until now, the Java platform has primarily been a monolithic one-size-fits-all solution.
+
+Goals:
+------
+
+1.Reliable configuration —Modularity provides mechanisms for explicitly declaring dependencies between modules in a manner that’s recognized both at compile time and execution time.
+ 
+2.Strong encapsulation —The packages in a module are accessible to other modules only if the module explicitly exports them. Even then, another module cannot use those packages unless it explicitly states that it requires the other module’s capabilities.
+
+3.Scalable Java platform—Previously, the Java platform was a monolith consisting of a massive number of packages, making it challenging to develop, maintain and evolve. It couldn’t be easily subsetted. The platform is now modularized into 95 modules (this number might change as Java evolves).
+For example, the module descriptor module-info.java is one of the resources in a Java 9 module. (A module descriptor is a compiled version of a module declaration. When you create this file, you have to know two bits of information: what the module will depend on and what it will export.)
+
+4.Greater platform integrity—Before Java 9, it was possible to use many classes in the platform that were not meant for use by an app’s classes. With strong encapsulation, these internal APIs are truly encapsulated and hidden from apps using the platform. This can make migrating legacy code to modularized Java 9 problematic if your code depends on internal APIs.
+
+5.Improved performance—The JVM uses various optimization techniques to improve application performance. JSR 376 indicates that these techniques are more effective when it’s known in advance that required types are located only in specific modules.
+
+The base module:
+----------------
+Currently, the Java 9 module system has about 98 modules, but it is continuing to evolve. Oracle has categorized JDK jars and Java SE specifications into two sets of modules.
+
+The default module for all JDK and user-defined modules is the base module java.base. It is an independent module and doesn't depend on any other modules. java.base is known as the "mother of Java 9 modules."  java.base is the module that every other module depends on. This is because it contains such foundational classes as Java objects, Integer, String, and so on. All the classes that code cannot work without.
+
+
+
+
+
+
+
+
+
+
+
+
+
+All developers are encouraged to use the jdeps tool to identify any static references to JDK internal classes. The jdeps tool was introduced in JDK 8 and has many significant improvements in JDK 9.
