@@ -51,7 +51,7 @@ Software as a Service (SaaS) provides you with a completed product that is run a
 
 Overlapping with PaaS, serverless computing focuses on building app functionality without spending time continually managing the servers and infrastructure required to do so. The cloud provider handles the setup, capacity planning, and server management for you. Serverless architectures are highly scalable and event-driven, only using resources when a specific function or trigger occurs.
 
-## Use cases
+### Use cases
 
 * Infrastructure scaling
 * Disaster recovery
