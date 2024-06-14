@@ -44,3 +44,12 @@ Since the LTM is a full proxy its easy for it to listen on one port but direct t
 The GTM and LTM can work together or they can be totally independent. If your organization owns both modules its usually using them together, and thats where the real power comes in.. They do this via a proprietary protocol called iQuery. iQuery, functioning on TCP port 4353, reports VIP availability / performance back to the GTMs. The GTMs can then dynamically resolve VIPs that live on an LTM(s).
 
 **When a GTM has LTMs as servers in its’ configuration there is no need to monitor the actual VIP(s) with application monitors, as the LTM is doing that & iQuery **
+
+# Maximum Availability Architecture
+
+F5 LTM provides load balancing, high availability and service checks inside the datacenter.
+F5 GTM works with the DNS infrastructure to monitor the health of all data centers, and route
+users to the best available datacenter. Many of the Disaster Recovery architectures rely on GTM
+to ensure users and customers always connect to the best operational Oracle application.
+
+![1718210195959](image/README/1718210195959.png)

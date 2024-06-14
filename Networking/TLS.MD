@@ -1,6 +1,6 @@
 # Introduction
 
-This sample project demonstrates a basic setup of a server and a client. The communication between the server and client happens through HTTP, so there is no encryption at all yet. The goal is to ensure that all communication will be encrypted.
+The communication between the server and client happens through HTTP, so there is no encryption at all yet. The goal is to ensure that all communication will be encrypted.
 
 **Definition**
 
@@ -8,6 +8,17 @@ This sample project demonstrates a basic setup of a server and a client. The com
 * TrustStore: A KeyStore containing one or more certificates also known as public key. This KeyStore contains a list of trusted certificates
 * One way authentication (also known as one way tls, one way ssl): Https connection where the client validates the certificate of the counter party
 * Two way authentication (also known as two way tls, two way ssl, mutual authentication): Https connection where the client as well as the counter party validates the certificate, also known as mutual authentication
+
+
+# Public key and private key
+
+
+TLS works using a technique called public key cryptography, which relies on a pair of keys — a public key and a private key. Anything encrypted with the public key can be decrypted only with the private key.
+Therefore, a server that decrypts a message that was encrypted with the public key proves that it possesses the private key. Anyone can view the public key by looking at the domain's or server's TLS certificate.
+
+A TLS certificate is a data file that contains important information for verifying a server's or device's identity, including the public key, a statement of who issued the certificate (TLS certificates are issued by a certificate authority), and the certificate's expiration date.
+
+The TLS handshake is the process for verifying the TLS certificate and the server's possession of the private key. The TLS handshake also establishes how encryption will take place once the handshake is finished.
 
 
 # Websites already use TLS, so why is mTLS not
