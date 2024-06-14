@@ -1,4 +1,4 @@
-package com.ankit.example.java8.threading.async;
+package com.java8.examples.async;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;

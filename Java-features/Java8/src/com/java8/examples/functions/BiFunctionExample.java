@@ -9,7 +9,7 @@ import java.util.function.Function;
  * In Java 8, BiFunction is a functional interface; it takes two arguments and returns an object.
  *
  *
- @FunctionalInterface
+ '@FunctionalInterface'
  public interface BiFunction<T, U, R> {
 
  R apply(T t, U u);

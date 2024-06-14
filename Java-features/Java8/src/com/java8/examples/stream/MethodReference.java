@@ -20,6 +20,7 @@ public class MethodReference {
     //before
     Function<Integer, Double> sqrt = (num) -> Math.sqrt(num);
     System.out.println(sqrt.apply(4));
+
     //after
     Function<Integer, Double> sqrtRef = Math::sqrt;
     System.out.println(sqrtRef.apply(4));

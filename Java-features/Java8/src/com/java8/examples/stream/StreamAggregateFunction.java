@@ -21,16 +21,17 @@ public class StreamAggregateFunction {
     // group by student id.
     Map<Integer, List<Student>> collect = studentList.stream()
         .collect(Collectors.groupingBy(Student::getId));
+
     //group by total marks
     Map<Integer, List<Student>> collect1 = studentList.stream()
-        .collect(Collectors.groupingBy(e -> e.getTotalMarks()));
+        .collect(Collectors.groupingBy(Student::getTotalMarks));
 
     //group by name
-    Map<String, Long> collect2 = studentList.stream().map(e -> e.getName())
+    Map<String, Long> collect2 = studentList.stream().map(Student::getName)
         .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
 
     //average marks
-    double average = studentList.stream().mapToInt(e -> e.getTotalMarks()).average().getAsDouble();
+    double average = studentList.stream().mapToInt(Student::getTotalMarks).average().getAsDouble();
 
     //get min marks
     Optional<Student> min = studentList.stream().min(Comparator.comparing(Student::getTotalMarks));

@@ -81,12 +81,6 @@ public class StreamIntroduction {
 
     filterExample();
 
-    skipExample();
-
-    limitExample();
-
-    distinctExample();
-
     reduceExample();
 
   }
@@ -125,38 +119,6 @@ public class StreamIntroduction {
     System.out.println(odds);
   }
 
-  public static void skipExample() {
-    List<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
-    List<Integer> remainder = numbers.stream().skip(3).collect(Collectors.toList());
-
-    // outputs "[4, 5]"
-    System.out.println(remainder);
-  }
-
-  public static void limitExample() {
-    List<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
-    List<Integer> taken = numbers.stream().limit(3).collect(Collectors.toList());
-
-    // outputs "[1, 2, 3]"
-    System.out.println(taken);
-  }
-
-  public static void distinctExample() {
-
-    /**
-     * The distinct() operation returns a stream consisting of the distinct elements (no duplicates)
-     * by comparing objects via their equals() method.
-     */
-    int[] arr = {23, 58, 12, 23, 17, 29, 99, 98, 29, 12};
-    Arrays.stream(arr).distinct().forEach(i -> System.out.print(i + " "));
-
-    List<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 1, 2, 3, 5));
-    List<Integer> distinct = numbers.stream().distinct().collect(Collectors.toList());
-
-    // outputs "[1, 2, 3, 5]"
-    System.out.println(distinct);
-  }
-
 
   public static void reduceExample() {
     /**
@@ -172,7 +134,7 @@ public class StreamIntroduction {
     OptionalDouble average = Arrays.stream(numbers).average();
 
     List<Integer> number = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
-    int sum1 = number.stream().reduce(50, (a, b) -> a + b);
+    int sum1 = number.stream().reduce(50, Integer::sum);
 
     // we can emulate collect(Collectors.toList()) using the reduce operation!
     // this overload of the method reduce() accepts three parameters: initial value, accumulator and combiner
