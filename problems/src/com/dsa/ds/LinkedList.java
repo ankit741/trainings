@@ -1,4 +1,4 @@
-package com.dsa.linkedlist;
+package com.dsa.ds;
 
 import java.util.Iterator;
 

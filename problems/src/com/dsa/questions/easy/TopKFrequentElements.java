@@ -96,6 +96,7 @@ It is guaranteed that the answer is unique.
     }
     return res;
   }
+
   private static int[] minHeapSolution(HashMap<Integer, Integer> freqMap, int k) {
     PriorityQueue<Integer> minHeap = new PriorityQueue<>(Comparator.comparingInt(freqMap::get));
     for (int num : freqMap.keySet()) {

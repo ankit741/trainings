@@ -1,8 +1,7 @@
 package com.dsa.questions.medium;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Map.Entry;
+import java.util.Map;
 
 public class DesignLRUCache {
 
@@ -61,38 +60,19 @@ public class DesignLRUCache {
     //LinkedHashMap because it provides us with the ability to maintain the order of entries based on access.
     //The access order is determined by the last accessed entry being moved to the end of the map.
     private LinkedHashMap<Integer, Integer> cache;
-    private final int capacity;
 
     public LRUCache(int capacity) {
-      this.capacity = capacity;
-      // The third parameter in the LinkedHashMap constructor specifies access order (true for access-order)
-      // This ensures that when an entry is accessed (get/put), it is moved to the end of the map
-      this.cache = new LinkedHashMap<>(capacity, 0.75f, true);
+      cache = new LinkedHashMap<Integer, Integer>(capacity, 0.7f, true) {
+        protected boolean removeEldestEntry(Map.Entry eldest) {
+          return size() > capacity;
+        }
+      };
     }
-
     public int get(int key) {
       return cache.getOrDefault(key, -1);
     }
-
-    /*
-     The put method inserts or updates the value associated with the key. If the key already exists,
-     its value is updated, and it's moved to the end of the map.
-     If the cache is full, it removes the least recently used entry before adding the new entry.
-     */
     public void put(int key, int value) {
-      if (cache.containsKey(key)) {
-        // If the key already exists, update its value and move it to the end of the map
-        cache.put(key, value);
-      } else {
-        // If cache is full, remove the least recently used entry (the first entry in the map)
-        if (cache.size() >= capacity) {
-          Iterator<Entry<Integer, Integer>> iterator = cache.entrySet().iterator();
-          iterator.next();
-          iterator.remove();
-        }
-        // Add the new entry to the end of the map
-        cache.put(key, value);
-      }
+      cache.put(key, value);
     }
   }
 }
