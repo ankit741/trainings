@@ -139,3 +139,79 @@ index=main sourcetype=syslog error | chart count by host
 
 index=main sourcetype=syslog error | sort - host
 index=main sourcetype=syslog error | dedup host
+
+index=<your index> code=A OR code=B | top empId
+
+
+**Stats**
+
+Ceates statistics from the search result
+
+Provides various mathematical functions such as sum,avg ,max,count ,range etc.
+
+index= <your index> status!=200 | stats count by status
+
+
+**eval**
+
+create a new field by evaluating the an expression
+
+overwrite the field if alfeady exist 
+
+many build in functions available
+
+
+index = your index  | eval kbytes=byte/1024
+
+create a new field kbyte  and store the value of expression byte/1024 on every event where byte is present
+
+index = your index  | eval result =if (like (_raw,"%failed password%"),failed,success)
+
+if evaluate a logical expression and assign the value based on result
+
+like function uses % wild card
+
+**Stats with eval**
+
+index= <your index> |  stats count(eval(status=500)) AS "internal server error"
+
+when using eval with stats , you must rename the aggregation using AS clause.
+
+
+index = <your index> | fieldsummary maxval=5
+
+
+**event stats**
+
+index= <your index> | timechart span 1h avg(bytes) AS "response size" | evenstats avg(response size)
+
+
+# Regex
+
+
+| Character classes              |                                |
+| ------------------------------ | ------------------------------ |
+| .                              | any character except newline   |
+| \w\d\s                         | word, digit, whitespace        |
+| \W\D\S                         | not word, digit, whitespace    |
+| [abc]                          | any of a, b, or c              |
+| [^abc]                         | not a, b, or c                 |
+| [a-g]                          | character between a & g        |
+| Anchors                        |                                |
+| ^abc$                          | start / end of the string      |
+| \b\B                           | word, not-word boundary        |
+| **Escaped characters**        |                                |
+| \.\*\\                         | escaped special characters     |
+| \t\n\r                         | tab, linefeed, carriage return |
+| **Groups & Lookaround**       |                                |
+| (abc)                          | capture group                  |
+| \1                             | backreference to group #1      |
+| (?:abc)                        | non-capturing group            |
+| (?=abc)                        | positive lookahead             |
+| (?!abc)                        | negative lookahead             |
+| **Quantifiers & Alternation** |                                |
+| a*a+a?                         | 0 or more, 1 or more, 0 or 1   |
+| a{5}a{2,}                      | exactly five, two or more      |
+| a{1,3}                         | between one & three            |
+| a+?a{2,}?                      | match as few as possible       |
+| ab                             | cd                             |
