@@ -39,6 +39,10 @@ For Maven you should include the following BouncyCastle dependencies:
 </dependency>
 ```
 
+Note: An alternative way to generate the private key and CSR in one command:
+
+``` Openssl req -new -newkey rsa:3072 -nodes -out code_signing_csr.txt -keyout code_signing_key.key -subj “/C=US/ST=California/L=San Jose/O=GPI Holding LLC/CN=GPI Holding LLC1```
+
 # OpenSSL
 is a powerful tool for generating RSA key pairs for various cryptographic purposes including signing JSON Web Tokens (JWT).
 Below are the steps to generate RSA key pairs using OpenSSL, along with some commonly used options and commands.
@@ -145,3 +149,70 @@ If you’re on Linux or Windows using Apache, you’ll need to enable the Apache
 </VirtualHost>
 
 ```
+
+
+
+Creating a Self-Signed Certificate
+A self-signed certificate is a certificate that’s signed with its own private key. It can be used to encrypt data just as well as CA-signed certificates, but our users will be shown a warning that says the certificate isn’t trusted.
+
+Let’s create a self-signed certificate (domain.crt) with our existing private key and CSR:
+
+
+ADVERTISING
+
+
+openssl x509 -signkey domain.key -in domain.csr -req -days 365 -out domain.crt
+Copy
+The -days option specifies the number of days that the certificate will be valid.
+
+We can create a self-signed certificate with just a private key:
+
+openssl req -key domain.key -new -x509 -days 365 -out domain.crt
+Copy
+This command will create a temporary CSR. We still have the CSR information prompt, of course.
+
+We can even create a private key and a self-signed certificate with just a single command:
+
+openssl req -newkey rsa:2048 -keyout domain.key -x509 -days 365 -out domain.crt
+Copy
+5. Creating a CA-Signed Certificate With Our Own CA
+We can be our own certificate authority (CA) by creating a self-signed root CA certificate, and then installing it as a trusted certificate in the local browser.
+
+5.1. Create a Self-Signed Root CA
+Let’s create a private key (rootCA.key) and a self-signed root CA certificate (rootCA.crt) from the command line:
+
+openssl req -x509 -sha256 -days 1825 -newkey rsa:2048 -keyout rootCA.key -out rootCA.crt
+Copy
+5.2. Sign Our CSR With Root CA
+We can sign our CSR (domain.csr) with the root CA certificate and its private key:
+
+openssl x509 -req -CA rootCA.crt -CAkey rootCA.key -in domain.csr -out domain.crt -days 365 -CAcreateserial
+Copy
+As a result, the CA-signed certificate will be in the domain.crt file. This would result in a working certificate, but browsers would still flag them. This happens because of the changes to the X.509 certificates and the addition of the SAN extension.
+
+
+5.3. SAN Extension
+X.509 certificates need information about the domain for which this particular certificate is issued. For example, the certificate can be valid but used in a different domain than it was issued for.  Previously, we could do this with the CommonName of the certificate request. However, after the global adoption of the SAN extension, all domain names should be included in the subjectAltName.
+
+If we create a certificate without a correctly configured subjectAltName, we can still use it. However, browsers will flag it as insecure. This approach might be fine for development. However, using this approach at an organizational level could desensitize employees to security notifications.
+
+To align with SAN extension standards, we need to create a configuration text file (domain.ext) with the following content:
+
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = domain
+Copy
+The “DNS.1” field should be the domain of our website.
+
+Then, we can slightly modify our previous command and add the information about the extension file:
+
+openssl x509 -req -CA rootCA.crt -CAkey rootCA.key -in domain.csr -out domain.crt -days 365 -CAcreateserial -extfile domain.ext
+Copy
+Now, our certificate meets all the SAN requirements and works correctly. This process requires an additional step, and openssl doesn’t provide a prompt for this information, so we must create a separate extension file. However, SAN makes the certificates more secure. Also, it allows the definition of several domains or IP addresses and we can use a single certificate across multiple domains.
+
+6. View Certificates
+We can use the openssl command to view the contents of our certificate in plain text:
+
+openssl x509 -text -noout -in domain.crt
