@@ -14,6 +14,11 @@ To use RSA for encryption, Alice encrypts the message using Bob's public key. Th
 
 To use RSA for signing, Alice takes a hash of the message, encrypts the hash using her own private key, and appends the result (this is the signature) to the message. Eve can of course still decrypt this using Alice's public key. However, Bob can decrypt the signature using Alice's public key and see if it matches. If it does, it must have been encrypted using Alice's private key, which only she has, so it must have come from Alice.
 
+# How CA Works ?
+To request an SSL certificate from a CA like Verisign or GoDaddy, you send them a Certificate Signing Request (CSR), and they give you an SSL certificate in return that they have signed using their root certificate and private key. All browsers have a copy (or access to a copy from the operating system) of the root certificate from the various CAs, so the browser can verify that your certificate was signed by a trusted CA.
+
+That’s why when you generate a self-signed certificate the browser doesn’t trust it. It hasn’t been signed by a CA. The way to get around this is to generate our own root certificate and private key. We then add the root certificate to all the devices we own just once, and then all the self-signed certificates we generate will be inherently trusted.
+
 # The keys work inversely:
 
 ## Public key encrypts, private key decrypts (encrypting):
