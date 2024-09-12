@@ -5,6 +5,11 @@ JWTs can be signed using a secret (with the HMAC algorithm) or a public/private 
 Although JWTs can be encrypted to also provide secrecy between parties, we will focus on signed tokens. Signed tokens can verify the integrity of the claims contained within it, while encrypted tokens hide those claims from other parties. 
 When tokens are signed using public/private key pairs, the signature also certifies that only the party holding the private key is the one that signed it.
 
+A signed JWT is known as a JWS (JSON Web Signature). In fact a JWT does not exist itself — either it has to be a JWS or a JWE (JSON Web Encryption). Its like an abstract class — the JWS and JWE are the concrete implementations.
+
+![image](https://github.com/user-attachments/assets/ffaa3bc3-f0cb-48b1-bf32-4a3b10c841ab)
+
+
 # What is the JSON Web Token structure?
 In its compact form, JSON Web Tokens consist of three parts separated by dots (.), which are:
 
