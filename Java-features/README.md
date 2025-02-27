@@ -59,13 +59,15 @@
 - Switch Expression-Standardization
 - Improve the NullPointerExceptions prompt information, print the null pointer exception thrown by the specific method, avoid the trouble that it is impossible to judge which function throws the exception when multiple functions in the same line of code are called, and facilitate exception troubleshooting
 - Delete a CMS garbage collector
-- New Features of JDK15 (September 2020)
+  
+## New Features of JDK15 (September 2020)
 - EdDSA Digital Signature Algorithm
 - Sealed Classes (Preview): The sealed keyword is used to modify abstract classes to only restrict specified subclasses to implement or inherit abstract classes to avoid abuse of abstract classes.
 - Hidden Classes
 - Remove the Nashorn JavaScript engine
 - Improve java.net.DatagramSocket and java.net.MulticastSocket underlying implementation.
-- New Features of JDK16 (March 2021)
+  
+## New Features of JDK16 (March 2021)
 - Allows use of C ++ 14 features in the JDK C ++ source code
 - ZGC performance optimization removes the ZGC thread stack processing from the safe point to the concurrent phase.
 - Add Unix Domain Socket Channel
